@@ -10,6 +10,7 @@
  * NO contiene lógica de negocio.
  */
 
+import { validarUsuarioLogeado } from "../../domain/servicios/servicios.js";
 let currentPresenter = null;
 
 export function showClassView(
@@ -267,7 +268,7 @@ export function renderClasses(
                 <div class="class-card-actions">
 
                     <button
-                        class="button button-secondary"
+                        class="button button-secondary btn-editar"
                         data-action="edit"
                         data-id="${classItem.id}"
                     >
@@ -275,7 +276,7 @@ export function renderClasses(
                     </button>
 
                     <button
-                        class="button button-danger"
+                        class="button button-danger btn-eliminar"
                         data-action="delete"
                         data-id="${classItem.id}"
                     >
@@ -288,6 +289,7 @@ export function renderClasses(
 
         `
     ).join("");
+    validarUsuarioLogeado();
 
     /*
      * Eventos de Editar

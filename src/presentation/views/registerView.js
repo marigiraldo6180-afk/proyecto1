@@ -73,7 +73,7 @@ export function showRegisterView(container, presenter) {
                             name="role"
                             required
                         >
-                            <option value="estudiante">Estudiante</option>
+                            <option value="estudiante">estudiante</option>
                             <option value="profesor">Profesor</option>
                         </select>
                     </div>
@@ -128,8 +128,8 @@ export function showRegisterView(container, presenter) {
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btnConfirmar">Confirmar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button"id="btnConfirmar" class="btn btn-success">Confirmar</button>
       </div>
     </div>
   </div>
@@ -183,10 +183,16 @@ export function showRegisterView(container, presenter) {
 }
 
 export function showRegisterMessage(message) {
-    const messageElement =
-        document.getElementById("register-message");
+    const messageElement = document.getElementById("register-message");
 
     if (messageElement) {
-        messageElement.textContent = message;
+        const isSuccess = message.toLowerCase().includes("creada correctamente") ||
+                          message.toLowerCase().includes("creada exitosamente");
+
+        messageElement.innerHTML = `
+            <div class="alert ${isSuccess ? "alert-success" : "alert-danger"}" role="alert">
+                ${message}
+            </div>
+        `;
     }
 }
